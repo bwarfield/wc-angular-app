@@ -1,0 +1,25 @@
+@import '/node_modules/flexbox-grid-mixins/sass/flexbox-grid-mixins';
+
+.wc-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    @include grid($gutter: $default-gutter-width, $flex-direction: $default-flex-direction, $flex-wrap: $default-flex-wrap);
+
+    @for $i from 1 to $default-number-columns{
+        .wc-col-#{$i} {
+            @include grid-col($i, $gutter: $default-gutter-width);
+        }
+    }
+
+    @media screen  and (min-width: $tablet-breakpoint){
+        @include grid($gutter: $default-gutter-width, $flex-direction: $default-tablet-flex-direction);
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $default-container-width;
+
+        &.fluid{
+            max-width: 100%;
+        }
+    }
+}

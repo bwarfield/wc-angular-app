@@ -1,0 +1,40 @@
+@import '../../styles/abstracts/variables';
+
+#app-nav{
+    background: linear-gradient(90deg, $purple1, $purple2);
+    color: $white;
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-between;
+    margin: 0 auto 1rem;
+
+    .app-title{
+        font-size: 1.8rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .menu{
+        display: flex;
+        flex-direction: row;
+        justify-content:  space-between;
+        list-style-type: none;
+
+        li{
+            &.selected{
+                background: $purple1;
+            }
+            
+            a{
+                color: $white;
+                display: block;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 1rem;
+
+                &.active{
+                    background-color: $purple3;
+                }
+            }
+        }
+    }
+}

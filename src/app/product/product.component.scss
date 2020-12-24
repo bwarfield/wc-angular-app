@@ -1,0 +1,48 @@
+@import '../../styles/abstracts/variables';
+
+.product{
+    background-color: $gray;
+    color: $white;
+    font-size: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+
+    &.starter{
+        background-color: $gray;
+    }&.regular{
+        background-color: $blue;
+    }&.professional{
+        background-color: $purple2;
+    }&.ultimate{
+        background-color: $red;
+    }
+
+    &.inactive{
+        filter: $disabled-filter;
+    }
+
+    .title{
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
+
+    .price{
+        font-size: 4rem;
+        margin: 1rem auto;
+        text-transform: uppercase;
+    }
+
+    .description{
+        margin: 1rem auto;
+        text-align: left;
+    }
+
+    .btn{
+        border-radius: 4px;
+        color: $blue;
+        padding: 0.5rem 2rem;
+        text-transform: uppercase;
+    }
+}

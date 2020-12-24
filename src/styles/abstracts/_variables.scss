@@ -1,0 +1,29 @@
+// Breakpoints
+$tablet-breakpoint: 800px;
+
+// Grid Variables
+$default-number-columns: 12;
+$default-gutter-width: 2%;
+
+$default-flex-direction: column;
+$default-flex-wrap: wrap;
+$default-tablet-flex-direction: row;
+
+$default-container-width: 1024px;
+
+// Text Variables
+$default-text-color: #111111;
+$default-font-family: 'Roboto', sans-serif;
+$default-font-size: 15px;
+
+
+//Color Variables
+$purple1: #6600FF;
+$purple2: #5300CF;
+$purple3: #7127DF;
+$blue: #3B86FF;
+$red: #EE3541;
+$white: #FFFFFF;
+$gray: #979797;
+
+$disabled-filter: opacity(0.4);

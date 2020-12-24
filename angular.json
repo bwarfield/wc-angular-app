@@ -28,9 +28,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/main.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles/"
+              ]
+            },
+            "scripts": [
+              "node_modules/number-to-text/index.js",
+              "node_modules/number-to-text/converters/en-us.js"
+            ]
           },
           "configurations": {
             "production": {

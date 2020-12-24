@@ -1,0 +1,37 @@
+<app-nav [title]="title" [navigationOptions]="navigationOptions"></app-nav>
+
+<div class="product-container wc-container">
+  <div class="wc-col-6" *ngFor="let product of productOptions">
+    <!-- <app-product-detail [product]="product" [productBought]="product === selectedProduct" (onBuy)="onSelect(product)" (onCancel)="onSelect()"></app-product-detail> -->
+
+    <div class="product {{product.name | lowercase}}" [class.inactive]="selectedProduct && selectedProduct != product">
+        <p class="title">
+            {{product.name}}
+        </p>
+        <p class="price" *ngIf="selectedProduct != product">
+            ${{product.price}}
+        </p>
+        <p class="price" *ngIf="selectedProduct == product">
+            Bought!
+        </p>
+        <p class="description">
+            {{product.description}}
+        </p>
+        <div>
+            <input type="button" 
+                    class="btn buy-button" 
+                    (click)="onSelect(product)" 
+                    *ngIf="selectedProduct != product" 
+                    [disabled]="selectedProduct && selectedProduct != product ? true : null"
+                    value="Buy"/>
+            <input type="button" 
+                    class="btn cancel-button" 
+                    (click)="onSelect(null)" 
+                    *ngIf="selectedProduct == product" 
+                    value="Cancel"/>
+        </div>
+    </div>
+    
+
+  </div>
+</div>

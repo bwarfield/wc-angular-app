@@ -1,0 +1,14 @@
+<nav id="app-nav">
+    <div class="app-title">
+        {{title}}
+    </div>
+    <div class="app-menu" *ngIf="navigationOptions">
+        <ul class="menu">
+            <li 
+                *ngFor="let option of navigationOptions"
+                [class.selected]="option.selected">
+                <a [routerLink]="['/products/', option.id]" routerLinkActive="active">{{option.text}}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
