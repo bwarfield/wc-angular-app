@@ -11,7 +11,7 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "./src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -30,11 +30,6 @@
             "styles": [
               "src/styles/main.scss"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles/"
-              ]
-            },
             "scripts": [
               "node_modules/number-to-text/index.js",
               "node_modules/number-to-text/converters/en-us.js"
@@ -99,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/main.scss"
             ],
             "scripts": []
           }

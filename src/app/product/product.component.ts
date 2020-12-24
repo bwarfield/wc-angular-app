@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {ProductService } from '../services/product.service';
@@ -13,13 +13,12 @@ import { NavOptionFactory } from '../models/nav-option-factory';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  title = 'My App';
+  title: string = 'My App';
   page: number;
   countPerPage: number = 2;
   productOptions: Product[];
   selectedProduct: Product;
   navigationOptions: NavOption[];
-
 
   getProductCollection(page: number, count: number): void{
     this.productService.getProductCollection(page,count)
@@ -33,7 +32,6 @@ export class ProductComponent implements OnInit {
   }
 
   onSelect(product: any){
-    console.log(product);
     this.selectedProduct = product;
   }
 
