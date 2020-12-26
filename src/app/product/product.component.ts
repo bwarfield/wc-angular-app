@@ -6,6 +6,7 @@ import { NavOption } from '../models/nav-option';
 import { ProductCollection } from '../models/product-collection';
 import { Product } from '../models/product';
 import { NavOptionFactory } from '../models/nav-option-factory';
+import { ProductApiCollectionResponse } from '../models/product-api-collection-response';
 
 @Component({
   selector: 'app-product',
@@ -21,14 +22,14 @@ export class ProductComponent implements OnInit {
   navigationOptions: NavOption[];
 
   getProductCollection(page: number, count: number): void{
-    this.productService.getProductCollection(page,count)
-        .subscribe(productsCollection => this.receiveProductCollection(productsCollection));
+    this.productService.getProducts(page,count).subscribe(productResponse => this.receiveProductCollection(productResponse));
   }
 
-  receiveProductCollection(productCollection: ProductCollection): void{
-    this.productOptions = productCollection.products;
+  receiveProductCollection(productResponse: ProductApiCollectionResponse): void{
+    console.log(productResponse);
+    this.productOptions = productResponse.data;
 
-    this.navigationOptions = NavOptionFactory.CreatePagingNavOptions("/products/", productCollection.pagingInfo.totalPages);
+    this.navigationOptions = NavOptionFactory.CreatePagingNavOptions("/products/", productResponse.meta.totalPages);
   }
 
   onSelect(product: any){
@@ -43,7 +44,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.page = parseInt(params.get('id'));
-      this.getProductCollection(this.page,2);
+      this.getProductCollection(this.page,this.countPerPage);
     })
   }
 }

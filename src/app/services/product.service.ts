@@ -1,46 +1,40 @@
+import { HttpBackend, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { PageInfo } from '../models/page-info';
 import { Product } from '../models/product';
 import { ProductCollection } from '../models/product-collection';
+import { ProductApiCollectionResponse } from '../models/product-api-collection-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  getProductCollection(page: number, count: number): Observable<ProductCollection> {
-    return of({
-                products: paginate(this.products, count, page),
-                pagingInfo: {
-                  currentPage: page,
-                  totalPages: Math.ceil(this.products.length/count)
-                }
-              });
-  }
-  
-  products: Product[] = [
-    {
-      name: 'Starter',
-      price: 1.00,
-      description: 'Starter features for your business to grow.'
-    },
-    {
-      name: 'Regular',
-      price: 25.00,
-      description: 'Regular features for your business to grow.'
-    },
-    {
-      name: 'Professional',
-      price: 75.00,
-      description: 'Professional features for your business to grow.'
-    },
-    {
-      name: 'Ultimate',
-      price: 115.00,
-      description: 'The ultimate set of features for your business to grow.'
-    },
-  ];
+  private productsUrl = 'api/products';  // Url to data
+  products: Product[];
+  pagingInfo: PageInfo;
 
-  constructor() { }
+  getProducts(page: number, count: number): Observable<ProductApiCollectionResponse> {
+    var pageUrl = `${this.productsUrl}?page=${page}&count=${count}`;
+
+    return this.httpClient.get<ProductApiCollectionResponse>(pageUrl);
+  }
+
+  getPageInfo(){
+
+  }
+
+  // getProductCollection(page: number, count: number): Observable<ProductCollection> {
+  //   return of({
+  //               products: paginate(this.products, count, page),
+  //               pagingInfo: {
+  //                 currentPage: page,
+  //                 totalPages: Math.ceil(this.products.length/count)
+  //               }
+  //             });
+  // }
+  
+  constructor(private httpClient: HttpClient) { }
 }
 
 function paginate(array, page_size, page_number) {

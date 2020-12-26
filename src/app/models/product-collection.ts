@@ -1,7 +1,8 @@
 import { Product } from './product';
 import { PageInfo } from './page-info';
+import { Observable } from 'rxjs';
 
 export interface ProductCollection {
-    products: Product[];
+    products: Observable<Product[]>;
     pagingInfo: PageInfo;
 }
