@@ -4,12 +4,13 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { RequestInfo, ResponseOptions } from 'node_modules/angular-in-memory-web-api/interfaces';
  import {STATUS, getStatusText} from 'node_modules/angular-in-memory-web-api/http-status-codes';
 import { Product } from '../models/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductMemoryDataService implements InMemoryDbService {
-  createDb() {
+  createDb(): Product[] {
     const products: Product[] = [
       {
         id: 1,
@@ -36,9 +37,7 @@ export class ProductMemoryDataService implements InMemoryDbService {
         description: 'The ultimate set of features for your business to grow.'
       },
     ];
-    return {
-              products
-            };
+    return products
   }
 
   //Override get requests
@@ -65,7 +64,8 @@ export class ProductMemoryDataService implements InMemoryDbService {
           const totalPages = Math.ceil(filteredCollection.length/count);
           meta = { totalPages, currentPage: page };
           console.log(`page: ${page}, count: ${count}`);
-          data = filteredCollection.slice(page, page + count);
+          console.log(filteredCollection);
+          data = ProductMemoryDataService.paginate(filteredCollection, page, count);
           console.log(`Total pages: ${totalPages}, and returned data count: ${data.length}`);
         }
 
@@ -114,5 +114,10 @@ export class ProductMemoryDataService implements InMemoryDbService {
         }
         return ok;
     });
+  }
+
+  private static paginate(array, page, count) {
+    // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+    return array.slice((page - 1) * count, page * count);
   }
 }

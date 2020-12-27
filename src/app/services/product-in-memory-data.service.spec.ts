@@ -8,9 +8,11 @@ describe('InMemoryDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ProductMemoryDataService);
+    service.createDb();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

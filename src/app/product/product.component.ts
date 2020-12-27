@@ -26,7 +26,6 @@ export class ProductComponent implements OnInit {
   }
 
   receiveProductCollection(productResponse: ProductApiCollectionResponse): void{
-    console.log(productResponse);
     this.productOptions = productResponse.data;
 
     this.navigationOptions = NavOptionFactory.CreatePagingNavOptions("/products/", productResponse.meta.totalPages);

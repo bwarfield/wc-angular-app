@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,7 +13,8 @@ describe('ProductComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ],
       providers: [
         {provide: ProductService}
@@ -30,10 +32,6 @@ describe('ProductComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should generate a set number of products per page', () => {
-    expect(component.productOptions.length === component.countPerPage).toBeTruthy();
   });
 
 });
