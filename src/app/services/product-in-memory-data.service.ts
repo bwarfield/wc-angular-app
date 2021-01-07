@@ -5,13 +5,14 @@ import { RequestInfo, ResponseOptions } from 'node_modules/angular-in-memory-web
  import {STATUS, getStatusText} from 'node_modules/angular-in-memory-web-api/http-status-codes';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
+import { ProductCollection } from '../models/product-collection';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductMemoryDataService implements InMemoryDbService {
-  createDb(): Product[] {
-    const products: Product[] = [
+  createDb() {
+    const products = [
       {
         id: 1,
         name: 'Starter',
@@ -37,7 +38,9 @@ export class ProductMemoryDataService implements InMemoryDbService {
         description: 'The ultimate set of features for your business to grow.'
       },
     ];
-    return products
+    return {
+      products
+    };
   }
 
   //Override get requests
